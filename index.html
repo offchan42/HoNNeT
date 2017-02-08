@@ -71,7 +71,7 @@
                 </div>
             </div>
         </section>
-        <div class="container is-fluid box">
+        <div class="container is-fluid box" id="app">
             <div class="notification">
                 <div class="columns">
                     <div class="column">
@@ -121,6 +121,44 @@
          },
          gpu: true
      })
-     console.log(model)
+     console.log('model: ' + model)
+     const vm = new Vue({
+         el: '#app',
+         data() {
+             model,
+             modelReady: false,
+         },
+         watch: {
+             modelReady: function() {
+                 if (this.modelReady)
+                     console.log('the model is ready now')
+             }
+         }
+     })
+     model.ready().then(() => {
+         vm.modelReady = true
+         // input data object keyed by names of the input layers
+         // or `input` for Sequential models
+         // values are the flattened Float32Array data
+         // (input tensor shapes are specified in the model config)
+         let data = new Array(len).fill(0)
+         const inputData = {
+             'hero_input': new Float32Array(data)
+         }
+
+         // make predictions
+         // outputData is an object keyed by names of the output layers
+         // or `output` for Sequential models
+         model.predict(inputData).then(outputData => {
+             console.log('output')
+             console.log(outputData)
+         }).catch(err => {
+             // handle error
+             console.log('pred error: ' + err)
+         }
+     }).catch(err => {
+         // handle error
+         console.log('ready error: ' + err)
+     }
     </script>
 </html>
