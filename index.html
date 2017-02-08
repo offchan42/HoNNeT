@@ -76,13 +76,19 @@
         </section>
         <div class="container is-fluid box">
             <div class="notification">
-                This container is <strong>fluid</strong>: it will have a 20px gap on either side, on any viewport size.
                 <div class="columns">
-                    <div class="column">1</div>
-                    <div class="column">2</div>
-                    <div class="column">3</div>
-                    <div class="column">4</div>
-                    <div class="column">5</div>
+                    <div class="column">
+                        <p class="notification is-primary box">
+                            Legion
+                        </p>
+                        something
+                    </div>
+                    <div class="column is-danger">
+                        <p class="notification is-danger">
+                            Hellbourne
+                        </p>
+                        something
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,7 +102,7 @@
                         <strong>HoNNeT</strong> by <a href="https://github.com/off99555">off99555</a>. The source code is licensed
                         <a href="https://github.com/off99555/HoNNeT/blob/master/LICENSE">Apache-2.0</a>.                    </p>
                     <p>
-                        <a class="icon" href="https://github.com/jgthms/bulma">
+                        <a class="icon" href="https://github.com/off99555/HoNNeT">
                             <i class="fa fa-github"></i>
                         </a>
                     </p>
@@ -108,12 +114,15 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="keras-js/keras.js"></script>
     <script>
-     new Vue({
-         el: '#app',
-         data: function(){
-             return { visible: false }
-         }
-     })
+        const model = new KerasJS.Model({
+        filepaths: {
+        model: 'honnet_brain_architecture.json',
+        weights: 'honnet_brain_weights_weights.buf',
+        metadata: 'honnet_brain_weights_metadata.json'
+        },
+        gpu: true
+        })
     </script>
 </html>
