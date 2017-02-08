@@ -10,9 +10,6 @@
     <body>
         <nav class="nav">
             <div class="nav-left">
-                <a class="nav-item">
-                    <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
-                </a>
             </div>
 
             <div class="nav-center">
@@ -96,7 +93,7 @@
             <div class="container">
                 <div class="content has-text-centered">
                     <p>
-                        <b>Disclaimer</b>: Don't take it too serious. The system is fed only ~80,000 HoN matches.
+                        <b>Disclaimer</b>: Don't take it too serious. The system is fed only ~90,000 HoN matches.
                     </p>
                     <p>
                         <strong>HoNNeT</strong> by <a href="https://github.com/off99555">off99555</a>. The source code is licensed
@@ -116,13 +113,14 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="keras-js/keras.js"></script>
     <script>
-        const model = new KerasJS.Model({
-        filepaths: {
-        model: 'honnet_brain_architecture.json',
-        weights: 'honnet_brain_weights_weights.buf',
-        metadata: 'honnet_brain_weights_metadata.json'
-        },
-        gpu: true
-        })
+     const model = new KerasJS.Model({
+         filepaths: {
+             model: 'honnet_brain_architecture.json',
+             weights: 'honnet_brain_weights_weights.buf',
+             metadata: 'honnet_brain_weights_metadata.json'
+         },
+         gpu: true
+     })
+     console.log(model)
     </script>
 </html>
