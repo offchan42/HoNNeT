@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <title>HoNNeT - who wins on Heroes of Newerth!</title>
     </head>
     <body>
         <nav class="nav">
@@ -114,21 +115,12 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="keras-js/keras.js"></script>
     <script>
-     const model = new KerasJS.Model({
-         filepaths: {
-             model: 'honnet_brain_architecture.json',
-             weights: 'honnet_brain_weights_weights.buf',
-             metadata: 'honnet_brain_weights_metadata.json'
-         },
-         gpu: true
-     })
-     console.log('model')
-     console.log(model)
+     const N_AVAIL_HEROES = 260
      const vm = new Vue({
          el: '#app',
          data() {
              return {
-                 model,
+                 model: null,
                  modelReady: false
              }
          },
@@ -139,13 +131,22 @@
              }
          }
      })
+     const model = new KerasJS.Model({
+         filepaths: {
+             model: 'honnet_brain_architecture.json',
+             weights: 'honnet_brain_weights_weights.buf',
+             metadata: 'honnet_brain_weights_metadata.json'
+         }
+     })
      model.ready().then(() => {
+         vm.model = model
          vm.modelReady = true
          // input data object keyed by names of the input layers
          // or `input` for Sequential models
          // values are the flattened Float32Array data
          // (input tensor shapes are specified in the model config)
-         let data = new Array(len).fill(0)
+         console.log('predicting with data')
+         let data = new Array(2 * N_AVAIL_HEROES).fill(0)
          const inputData = {
              'hero_input': new Float32Array(data)
          }
@@ -158,11 +159,13 @@
              console.log(outputData)
          }).catch(err => {
              // handle error
-             console.log('pred error: ' + err)
+             console.log('pred error: ')
+             console.log(err)
          })
      }).catch(err => {
          // handle error
-         console.log('ready error: ' + err)
+         console.log('ready error: ')
+         console.log(err)
      })
     </script>
 </html>
