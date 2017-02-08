@@ -72,6 +72,7 @@
             </div>
         </section>
         <div class="container is-fluid box" id="app">
+            {{ modelReady }}
             <div class="notification">
                 <div class="columns">
                     <div class="column">
@@ -125,8 +126,10 @@
      const vm = new Vue({
          el: '#app',
          data() {
-             model,
-             modelReady: false,
+             return {
+                model,
+                modelReady: false
+             }
          },
          watch: {
              modelReady: function() {
