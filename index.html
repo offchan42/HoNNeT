@@ -122,7 +122,8 @@
          },
          gpu: true
      })
-     console.log('model: ' + model)
+     console.log('model')
+     console.log(model)
      const vm = new Vue({
          el: '#app',
          data() {
@@ -162,6 +163,6 @@
      }).catch(err => {
          // handle error
          console.log('ready error: ' + err)
-     }
+     })
     </script>
 </html>
