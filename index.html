@@ -73,7 +73,7 @@
             </div>
         </section>
         <div class="container is-fluid box" id="app">
-            {{ modelReady }}
+            <div class="notification is-success" v-if="!modelReady">Loading the brain ... please wait.</div>
             <div class="notification">
                 <div class="columns">
                     <div class="column">
