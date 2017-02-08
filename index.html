@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- import CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    </head>
+    <body>
+        <nav class="nav">
+            <div class="nav-left">
+                <a class="nav-item">
+                    <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
+                </a>
+            </div>
+
+            <div class="nav-center">
+                <a class="nav-item">
+                    <span class="icon">
+                        <i class="fa fa-github"></i>
+                    </span>
+                </a>
+                <a class="nav-item">
+                    <span class="icon">
+                        <i class="fa fa-twitter"></i>
+                    </span>
+                </a>
+            </div>
+
+            <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
+            <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
+            <span class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+
+            <!-- This "nav-menu" is hidden on mobile -->
+            <!-- Add the modifier "is-active" to display it on mobile -->
+            <div class="nav-right nav-menu">
+
+                <span class="nav-item">
+                    <a class="button" >
+                        <span class="icon">
+                            <i class="fa fa-twitter"></i>
+                        </span>
+                        <span>Tweet</span>
+                    </a>
+                    <a class="button is-primary">
+                        <span class="icon">
+                            <i class="fa fa-download"></i>
+                        </span>
+                        <span>Download</span>
+                    </a>
+                </span>
+            </div>
+        </nav>
+        <!-- <div id="app"> -->
+        <!-- <el-button @click="visible = true">Button</el-button> -->
+        <!-- <el-dialog v-model="visible" title="Hello world"> -->
+        <!-- <p>Try Element</p> -->
+        <!-- </el-dialog> -->
+        <!-- </div> -->
+        <section class="hero is-info is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        HoNNeT
+                    </h1>
+                    <h2 class="subtitle">
+                        Predicts which team would win given heroes of both teams (driven by deep learning)
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <div class="container is-fluid box">
+            <div class="notification">
+                This container is <strong>fluid</strong>: it will have a 20px gap on either side, on any viewport size.
+                <div class="columns">
+                    <div class="column">1</div>
+                    <div class="column">2</div>
+                    <div class="column">3</div>
+                    <div class="column">4</div>
+                    <div class="column">5</div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>
+                        <b>Disclaimer</b>: Don't take it too serious. The system is fed only ~80,000 HoN matches.
+                    </p>
+                    <p>
+                        <strong>HoNNeT</strong> by <a href="https://github.com/off99555">off99555</a>. The source code is licensed
+                        <a href="https://github.com/off99555/HoNNeT/blob/master/LICENSE">Apache-2.0</a>.                    </p>
+                    <p>
+                        <a class="icon" href="https://github.com/jgthms/bulma">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </body>
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+     new Vue({
+         el: '#app',
+         data: function(){
+             return { visible: false }
+         }
+     })
+    </script>
+</html>
