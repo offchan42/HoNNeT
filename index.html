@@ -125,6 +125,7 @@
     <script src="keras-js/keras.js"></script>
     <script>
      const N_AVAIL_HEROES = 260
+     const HERO_INPUT = new Array(2 * N_AVAIL_HEROES).fill(0)
      const vm = new Vue({
          el: '#app',
          data() {
@@ -147,23 +148,21 @@
              metadata: 'honnet_brain_weights_metadata.json'
          }
      })
+     function getInputData(legion, hellbourne) {
+        console.log('predicting with data')
+        const inputData = {
+            'hero_input': new Float32Array(HERO_INPUT)
+        }
+        return inputData
+     }
      model.ready().then(() => {
          vm.model = model
          vm.modelReady = true
-         // input data object keyed by names of the input layers
-         // or `input` for Sequential models
-         // values are the flattened Float32Array data
-         // (input tensor shapes are specified in the model config)
-         console.log('predicting with data')
-         let data = new Array(2 * N_AVAIL_HEROES).fill(0)
-         const inputData = {
-             'hero_input': new Float32Array(data)
-         }
 
          // make predictions
          // outputData is an object keyed by names of the output layers
          // or `output` for Sequential models
-         model.predict(inputData).then(outputData => {
+         model.predict(getInputData([], [])).then(function(outputData) {
              console.log('output')
              console.log(outputData)
          }).catch(err => {
