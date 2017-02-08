@@ -127,8 +127,8 @@
          el: '#app',
          data() {
              return {
-                model,
-                modelReady: false
+                 model,
+                 modelReady: false
              }
          },
          watch: {
@@ -158,7 +158,7 @@
          }).catch(err => {
              // handle error
              console.log('pred error: ' + err)
-         }
+         })
      }).catch(err => {
          // handle error
          console.log('ready error: ' + err)
