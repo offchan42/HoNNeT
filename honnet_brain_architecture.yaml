@@ -1,0 +1,261 @@
+class_name: Model
+config:
+  input_layers:
+  - [hero_input, 0, 0]
+  layers:
+  - class_name: InputLayer
+    config:
+      batch_input_shape: !!python/tuple [null, 520]
+      input_dtype: float32
+      name: hero_input
+      sparse: false
+    inbound_nodes: []
+    name: hero_input
+  - class_name: Reshape
+    config:
+      batch_input_shape: !!python/tuple [null, 520]
+      input_dtype: float32
+      name: reshape_9
+      target_shape: !!python/tuple [1, 2, 260]
+      trainable: true
+    inbound_nodes:
+    - - [hero_input, 0, 0]
+    name: reshape_9
+  - class_name: Permute
+    config:
+      dims: !!python/tuple [2, 3, 1]
+      name: permute_9
+      trainable: true
+    inbound_nodes:
+    - - [reshape_9, 0, 0]
+    name: permute_9
+  - class_name: Convolution2D
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activation: linear
+      activity_regularizer: null
+      b_constraint: null
+      b_regularizer: null
+      bias: true
+      border_mode: valid
+      dim_ordering: tf
+      init: glorot_uniform
+      name: convolution2d_17
+      nb_col: 260
+      nb_filter: 135
+      nb_row: 1
+      subsample: !!python/tuple [1, 1]
+      trainable: true
+    inbound_nodes:
+    - - [permute_9, 0, 0]
+    name: convolution2d_17
+  - class_name: ELU
+    config: {alpha: 1.0, name: elu_17, trainable: true}
+    inbound_nodes:
+    - - [convolution2d_17, 0, 0]
+    name: elu_17
+  - class_name: Convolution2D
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activation: linear
+      activity_regularizer: null
+      b_constraint: null
+      b_regularizer: null
+      bias: true
+      border_mode: valid
+      dim_ordering: tf
+      init: glorot_uniform
+      name: convolution2d_18
+      nb_col: 1
+      nb_filter: 64
+      nb_row: 1
+      subsample: !!python/tuple [1, 1]
+      trainable: true
+    inbound_nodes:
+    - - [elu_17, 0, 0]
+    name: convolution2d_18
+  - class_name: ELU
+    config: {alpha: 1.0, name: elu_18, trainable: true}
+    inbound_nodes:
+    - - [convolution2d_18, 0, 0]
+    name: elu_18
+  - class_name: Flatten
+    config: {name: flatten_9, trainable: true}
+    inbound_nodes:
+    - - [elu_18, 0, 0]
+    name: flatten_9
+  - class_name: Dense
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activation: linear
+      activity_regularizer: null
+      b_constraint: null
+      b_regularizer: null
+      batch_input_shape: !!python/tuple [null, 128]
+      bias: true
+      init: glorot_uniform
+      input_dim: !!python/object/apply:numpy.core.multiarray.scalar
+      - !!python/object/apply:numpy.dtype
+        args: [i8, 0, 1]
+        state: !!python/tuple [3, <, null, null, null, -1, -1, 0]
+      - !!binary |
+        gAAAAAAAAAA=
+      input_dtype: float32
+      name: dense_28
+      output_dim: 128
+      trainable: true
+    inbound_nodes:
+    - - [flatten_9, 0, 0]
+    name: dense_28
+  - class_name: BatchNormalization
+    config: {axis: -1, beta_regularizer: null, epsilon: 0.001, gamma_regularizer: null,
+      mode: 0, momentum: 0.99, name: batchnormalization_25, trainable: true}
+    inbound_nodes:
+    - - [dense_28, 0, 0]
+    name: batchnormalization_25
+  - class_name: Activation
+    config: {activation: relu, name: activation_26, trainable: true}
+    inbound_nodes:
+    - - [batchnormalization_25, 0, 0]
+    name: activation_26
+  - class_name: Dropout
+    config: {name: dropout_25, p: 0.5, trainable: true}
+    inbound_nodes:
+    - - [activation_26, 0, 0]
+    name: dropout_25
+  - class_name: Dense
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activation: linear
+      activity_regularizer: null
+      b_constraint: null
+      b_regularizer: null
+      batch_input_shape: !!python/tuple [null, 128]
+      bias: true
+      init: glorot_uniform
+      input_dim: 128
+      input_dtype: float32
+      name: dense_29
+      output_dim: 128
+      trainable: true
+    inbound_nodes:
+    - - [dropout_25, 0, 0]
+    name: dense_29
+  - class_name: BatchNormalization
+    config: {axis: -1, beta_regularizer: null, epsilon: 0.001, gamma_regularizer: null,
+      mode: 0, momentum: 0.99, name: batchnormalization_26, trainable: true}
+    inbound_nodes:
+    - - [dense_29, 0, 0]
+    name: batchnormalization_26
+  - class_name: Activation
+    config: {activation: relu, name: activation_27, trainable: true}
+    inbound_nodes:
+    - - [batchnormalization_26, 0, 0]
+    name: activation_27
+  - class_name: Dropout
+    config: {name: dropout_26, p: 0.5, trainable: true}
+    inbound_nodes:
+    - - [activation_27, 0, 0]
+    name: dropout_26
+  - class_name: Dense
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activation: linear
+      activity_regularizer: null
+      b_constraint: null
+      b_regularizer: null
+      batch_input_shape: !!python/tuple [null, 128]
+      bias: true
+      init: glorot_uniform
+      input_dim: 128
+      input_dtype: float32
+      name: dense_30
+      output_dim: 128
+      trainable: true
+    inbound_nodes:
+    - - [dropout_26, 0, 0]
+    name: dense_30
+  - class_name: BatchNormalization
+    config: {axis: -1, beta_regularizer: null, epsilon: 0.001, gamma_regularizer: null,
+      mode: 0, momentum: 0.99, name: batchnormalization_27, trainable: true}
+    inbound_nodes:
+    - - [dense_30, 0, 0]
+    name: batchnormalization_27
+  - class_name: Activation
+    config: {activation: relu, name: activation_28, trainable: true}
+    inbound_nodes:
+    - - [batchnormalization_27, 0, 0]
+    name: activation_28
+  - class_name: Dropout
+    config: {name: dropout_27, p: 0.5, trainable: true}
+    inbound_nodes:
+    - - [activation_28, 0, 0]
+    name: dropout_27
+  - class_name: Dense
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activation: softmax
+      activity_regularizer: null
+      b_constraint: null
+      b_regularizer: null
+      batch_input_shape: !!python/tuple [null, 128]
+      bias: true
+      init: glorot_uniform
+      input_dim: 128
+      input_dtype: float32
+      name: out_winner
+      output_dim: 2
+      trainable: true
+    inbound_nodes:
+    - - [dropout_27, 0, 0]
+    name: out_winner
+  - class_name: Dense
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activation: sigmoid
+      activity_regularizer: null
+      b_constraint: null
+      b_regularizer: null
+      batch_input_shape: !!python/tuple [null, 128]
+      bias: true
+      init: glorot_uniform
+      input_dim: 128
+      input_dtype: float32
+      name: out_concede
+      output_dim: 1
+      trainable: true
+    inbound_nodes:
+    - - [dropout_27, 0, 0]
+    name: out_concede
+  - class_name: Dense
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activation: linear
+      activity_regularizer: null
+      b_constraint: null
+      b_regularizer: null
+      batch_input_shape: !!python/tuple [null, 128]
+      bias: true
+      init: glorot_uniform
+      input_dim: 128
+      input_dtype: float32
+      name: out_secs
+      output_dim: 1
+      trainable: true
+    inbound_nodes:
+    - - [dropout_27, 0, 0]
+    name: out_secs
+  name: model_6
+  output_layers:
+  - [out_winner, 0, 0]
+  - [out_concede, 0, 0]
+  - [out_secs, 0, 0]
+keras_version: 1.2.1
