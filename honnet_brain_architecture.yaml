@@ -15,20 +15,20 @@ config:
     config:
       batch_input_shape: !!python/tuple [null, 520]
       input_dtype: float32
-      name: reshape_9
+      name: reshape_1
       target_shape: !!python/tuple [1, 2, 260]
       trainable: true
     inbound_nodes:
     - - [hero_input, 0, 0]
-    name: reshape_9
+    name: reshape_1
   - class_name: Permute
     config:
       dims: !!python/tuple [2, 3, 1]
-      name: permute_9
+      name: permute_1
       trainable: true
     inbound_nodes:
-    - - [reshape_9, 0, 0]
-    name: permute_9
+    - - [reshape_1, 0, 0]
+    name: permute_1
   - class_name: Convolution2D
     config:
       W_constraint: null
@@ -41,20 +41,26 @@ config:
       border_mode: valid
       dim_ordering: tf
       init: glorot_uniform
-      name: convolution2d_17
+      name: convolution2d_1
       nb_col: 260
       nb_filter: 135
       nb_row: 1
       subsample: !!python/tuple [1, 1]
       trainable: true
     inbound_nodes:
-    - - [permute_9, 0, 0]
-    name: convolution2d_17
-  - class_name: ELU
-    config: {alpha: 1.0, name: elu_17, trainable: true}
+    - - [permute_1, 0, 0]
+    name: convolution2d_1
+  - class_name: BatchNormalization
+    config: {axis: -1, beta_regularizer: null, epsilon: 0.001, gamma_regularizer: null,
+      mode: 0, momentum: 0.99, name: batchnormalization_1, trainable: true}
     inbound_nodes:
-    - - [convolution2d_17, 0, 0]
-    name: elu_17
+    - - [convolution2d_1, 0, 0]
+    name: batchnormalization_1
+  - class_name: Activation
+    config: {activation: relu, name: activation_1, trainable: true}
+    inbound_nodes:
+    - - [batchnormalization_1, 0, 0]
+    name: activation_1
   - class_name: Convolution2D
     config:
       W_constraint: null
@@ -67,25 +73,31 @@ config:
       border_mode: valid
       dim_ordering: tf
       init: glorot_uniform
-      name: convolution2d_18
+      name: convolution2d_2
       nb_col: 1
       nb_filter: 64
       nb_row: 1
       subsample: !!python/tuple [1, 1]
       trainable: true
     inbound_nodes:
-    - - [elu_17, 0, 0]
-    name: convolution2d_18
-  - class_name: ELU
-    config: {alpha: 1.0, name: elu_18, trainable: true}
+    - - [activation_1, 0, 0]
+    name: convolution2d_2
+  - class_name: BatchNormalization
+    config: {axis: -1, beta_regularizer: null, epsilon: 0.001, gamma_regularizer: null,
+      mode: 0, momentum: 0.99, name: batchnormalization_2, trainable: true}
     inbound_nodes:
-    - - [convolution2d_18, 0, 0]
-    name: elu_18
+    - - [convolution2d_2, 0, 0]
+    name: batchnormalization_2
+  - class_name: Activation
+    config: {activation: relu, name: activation_2, trainable: true}
+    inbound_nodes:
+    - - [batchnormalization_2, 0, 0]
+    name: activation_2
   - class_name: Flatten
-    config: {name: flatten_9, trainable: true}
+    config: {name: flatten_1, trainable: true}
     inbound_nodes:
-    - - [elu_18, 0, 0]
-    name: flatten_9
+    - - [activation_2, 0, 0]
+    name: flatten_1
   - class_name: Dense
     config:
       W_constraint: null
@@ -104,28 +116,28 @@ config:
       - !!binary |
         gAAAAAAAAAA=
       input_dtype: float32
-      name: dense_28
+      name: dense_1
       output_dim: 128
       trainable: true
     inbound_nodes:
-    - - [flatten_9, 0, 0]
-    name: dense_28
+    - - [flatten_1, 0, 0]
+    name: dense_1
   - class_name: BatchNormalization
     config: {axis: -1, beta_regularizer: null, epsilon: 0.001, gamma_regularizer: null,
-      mode: 0, momentum: 0.99, name: batchnormalization_25, trainable: true}
+      mode: 0, momentum: 0.99, name: batchnormalization_3, trainable: true}
     inbound_nodes:
-    - - [dense_28, 0, 0]
-    name: batchnormalization_25
+    - - [dense_1, 0, 0]
+    name: batchnormalization_3
   - class_name: Activation
-    config: {activation: relu, name: activation_26, trainable: true}
+    config: {activation: relu, name: activation_3, trainable: true}
     inbound_nodes:
-    - - [batchnormalization_25, 0, 0]
-    name: activation_26
+    - - [batchnormalization_3, 0, 0]
+    name: activation_3
   - class_name: Dropout
-    config: {name: dropout_25, p: 0.5, trainable: true}
+    config: {name: dropout_1, p: 0.5, trainable: true}
     inbound_nodes:
-    - - [activation_26, 0, 0]
-    name: dropout_25
+    - - [activation_3, 0, 0]
+    name: dropout_1
   - class_name: Dense
     config:
       W_constraint: null
@@ -139,28 +151,28 @@ config:
       init: glorot_uniform
       input_dim: 128
       input_dtype: float32
-      name: dense_29
+      name: dense_2
       output_dim: 128
       trainable: true
     inbound_nodes:
-    - - [dropout_25, 0, 0]
-    name: dense_29
+    - - [dropout_1, 0, 0]
+    name: dense_2
   - class_name: BatchNormalization
     config: {axis: -1, beta_regularizer: null, epsilon: 0.001, gamma_regularizer: null,
-      mode: 0, momentum: 0.99, name: batchnormalization_26, trainable: true}
+      mode: 0, momentum: 0.99, name: batchnormalization_4, trainable: true}
     inbound_nodes:
-    - - [dense_29, 0, 0]
-    name: batchnormalization_26
+    - - [dense_2, 0, 0]
+    name: batchnormalization_4
   - class_name: Activation
-    config: {activation: relu, name: activation_27, trainable: true}
+    config: {activation: relu, name: activation_4, trainable: true}
     inbound_nodes:
-    - - [batchnormalization_26, 0, 0]
-    name: activation_27
+    - - [batchnormalization_4, 0, 0]
+    name: activation_4
   - class_name: Dropout
-    config: {name: dropout_26, p: 0.5, trainable: true}
+    config: {name: dropout_2, p: 0.5, trainable: true}
     inbound_nodes:
-    - - [activation_27, 0, 0]
-    name: dropout_26
+    - - [activation_4, 0, 0]
+    name: dropout_2
   - class_name: Dense
     config:
       W_constraint: null
@@ -174,28 +186,28 @@ config:
       init: glorot_uniform
       input_dim: 128
       input_dtype: float32
-      name: dense_30
+      name: dense_3
       output_dim: 128
       trainable: true
     inbound_nodes:
-    - - [dropout_26, 0, 0]
-    name: dense_30
+    - - [dropout_2, 0, 0]
+    name: dense_3
   - class_name: BatchNormalization
     config: {axis: -1, beta_regularizer: null, epsilon: 0.001, gamma_regularizer: null,
-      mode: 0, momentum: 0.99, name: batchnormalization_27, trainable: true}
+      mode: 0, momentum: 0.99, name: batchnormalization_5, trainable: true}
     inbound_nodes:
-    - - [dense_30, 0, 0]
-    name: batchnormalization_27
+    - - [dense_3, 0, 0]
+    name: batchnormalization_5
   - class_name: Activation
-    config: {activation: relu, name: activation_28, trainable: true}
+    config: {activation: relu, name: activation_5, trainable: true}
     inbound_nodes:
-    - - [batchnormalization_27, 0, 0]
-    name: activation_28
+    - - [batchnormalization_5, 0, 0]
+    name: activation_5
   - class_name: Dropout
-    config: {name: dropout_27, p: 0.5, trainable: true}
+    config: {name: dropout_3, p: 0.5, trainable: true}
     inbound_nodes:
-    - - [activation_28, 0, 0]
-    name: dropout_27
+    - - [activation_5, 0, 0]
+    name: dropout_3
   - class_name: Dense
     config:
       W_constraint: null
@@ -213,7 +225,7 @@ config:
       output_dim: 2
       trainable: true
     inbound_nodes:
-    - - [dropout_27, 0, 0]
+    - - [dropout_3, 0, 0]
     name: out_winner
   - class_name: Dense
     config:
@@ -232,7 +244,7 @@ config:
       output_dim: 1
       trainable: true
     inbound_nodes:
-    - - [dropout_27, 0, 0]
+    - - [dropout_3, 0, 0]
     name: out_concede
   - class_name: Dense
     config:
@@ -251,9 +263,9 @@ config:
       output_dim: 1
       trainable: true
     inbound_nodes:
-    - - [dropout_27, 0, 0]
+    - - [dropout_3, 0, 0]
     name: out_secs
-  name: model_6
+  name: model_1
   output_layers:
   - [out_winner, 0, 0]
   - [out_concede, 0, 0]
