@@ -98,6 +98,11 @@
                         something
                     </div>
                 </div>
+                <div class="columns">
+                    <div class="column">
+                        {{ prediction }}
+                    </div>
+                </div>
             </div>
         </div>
         <footer class="footer">
@@ -131,7 +136,8 @@
          data() {
              return {
                  model: null,
-                 modelReady: false
+                 modelReady: false,
+                 prediction: null
              }
          },
          watch: {
@@ -166,6 +172,7 @@
          model.predict(getInputData([], [])).then(function(outputData) {
              console.log('output')
              console.log(outputData)
+             vm.prediction = outputData
          }).catch(err => {
              // handle error
              console.log('pred error: ')
