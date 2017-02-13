@@ -10,7 +10,7 @@ Deep learning predicts who would win in a HoN match given heroes of both team
   exploration/visualization
 - `honnet_loader.ipynb` loads the trained model and save it for later use in
   multiple formats
-- Other files has been explained at
+- Other files are explained at
   the [web repository](https://github.com/off99555/HoNNeT-web) because they are
   the same.
 
