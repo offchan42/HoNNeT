@@ -14,3 +14,6 @@ Deep learning predicts who would win in a HoN match given heroes of both team
   the [web repository](https://github.com/off99555/HoNNeT-web) because they are
   the same.
 
+## Disclaimer
+The data used for training the model needs to be updated regularly because heroes mechanisms are updated often.
+Look at the date of the `honnet_brain.h5` to see when it was last updated.
