@@ -24,3 +24,7 @@ but is very popular among Thai people.
 ## Disclaimer
 The data used for training the model needs to be updated regularly because heroes mechanisms are updated often.
 Look at the modification date of the `honnet_brain.h5` to see when it was last updated.
+
+**PS.** This repository is for gathering matches data and training deep learning model only.
+For the user interface which is implemented as a web application on Heroku, you need to see
+[HoNNeT-web](https://github.com/off99555/HoNNeT-web) repository.
