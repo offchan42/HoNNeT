@@ -7,7 +7,8 @@ but is very popular among Thai people.
 ## Role of each file
 - `hon_db_retriever.ipynb` contains data preparation/wrangling process, this is
   probably the most time consuming part of the pipeline, it downloads HoN
-  matches and save it into a **pickle** file
+  matches and save it into a **pickle** file. The data retrieval part is based on
+  international HoN's API which is very limited in number of matches you can download per API call.
 - `hon_matches.pkl` contains downloaded 100,000 matches
 - `hon_db_analyzer.ipynb` contains deep learning part and data
   exploration/visualization
@@ -19,4 +20,4 @@ but is very popular among Thai people.
 
 ## Disclaimer
 The data used for training the model needs to be updated regularly because heroes mechanisms are updated often.
-Look at the date of the `honnet_brain.h5` to see when it was last updated.
+Look at the modification date of the `honnet_brain.h5` to see when it was last updated.
