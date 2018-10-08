@@ -1,7 +1,10 @@
 # HoNNeT
 Deep learning predicts who would win in a HoN match given heroes of both team.
 
-Heroes of Newerth (HoN) is a multiplayer online battle arena (MOBA) game similar to DOTA
+The idea is that we will download match information in the past and train a deep learning model
+which receives hero picks of both team as input then predict which team is winning.
+
+**Note**: Heroes of Newerth (HoN) is a multiplayer online battle arena (MOBA) game similar to DOTA
 but is very popular among Thai people.
 
 ## Role of each file
