@@ -1,5 +1,8 @@
 # HoNNeT
-Deep learning predicts who would win in a HoN match given heroes of both team
+Deep learning predicts who would win in a HoN match given heroes of both team.
+
+Heroes of Newerth (HoN) is a multiplayer online battle arena (MOBA) game similar to DOTA
+but is very popular among Thai people.
 
 ## Role of each file
 - `hon_db_retriever.ipynb` contains data preparation/wrangling process, this is
