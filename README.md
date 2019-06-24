@@ -1,6 +1,8 @@
 # HoNNeT
 Deep learning predicts who would win in a HoN match given heroes of both team.
 
+![HoNNeT Website Screenshot](Screenshot_12.png)
+
 The idea is that we will download match information in the past and train a deep learning model
 which receives hero picks of both team as input then predict which team is winning.
 
