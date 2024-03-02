@@ -1,7 +1,7 @@
 # HoNNeT
 Deep learning predicts who would win in a HoN match given heroes of both team.
 
-[![HoNNeT Website Screenshot](Screenshot_12.png)](https://github.com/off99555/HoNNeT-web)
+[![HoNNeT Website Screenshot](Screenshot_12.png)](https://github.com/offchan42/HoNNeT-web)
 
 The idea is that we will download match information in the past and train a deep learning model
 which receives hero picks of both team as input then predict which team is winning.
@@ -20,7 +20,7 @@ but is very popular among Thai people.
 - `honnet_loader.ipynb` loads the trained model and save it for later use in
   multiple formats
 - Other files are explained at
-  the [web repository](https://github.com/off99555/HoNNeT-web) because they are
+  the [web repository](https://github.com/offchan42/HoNNeT-web) because they are
   the same.
 
 ## Disclaimer
@@ -29,4 +29,4 @@ Look at the modification date of the `honnet_brain.h5` to see when it was last u
 
 **PS.** This repository is for gathering matches data and training deep learning model only.
 For the user interface which is implemented as a web application on Heroku, you need to see
-[HoNNeT-web](https://github.com/off99555/HoNNeT-web) repository.
+[HoNNeT-web](https://github.com/offchan42/HoNNeT-web) repository.
